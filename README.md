@@ -18,7 +18,7 @@ JavaScript: Adds interactive features like message customization and animations.
 # 📂 Project Structure
 
 ├── index.html       # Main HTML file for the webpage
-├── style.css        # Styling and festive animations
+├── style.css        # Styling and festive animations 
 └── script.js        # JavaScript for message interactions
 
 # 🌈 How to Use
