@@ -31,5 +31,5 @@ Open the HTML File Open index.html in your browser to explore and send Diwali wi
 # 📄 License
 This project is open-source and available under the MIT License.
 
-# Happy Diwali to Everyone! May this project help you spread light and happiness!
+# Happy Diwali to Everyone! May this project help you spread light and happiness! 
 
