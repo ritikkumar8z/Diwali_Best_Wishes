@@ -2,7 +2,7 @@
  
 Welcome to the Diwali Wishes Webpage project! 🌟 This simple, joyful webpage is designed to spread festive cheer, allowing users to send beautiful Diwali wishes to
 their loved ones with a touch of brightness and positivity. 
-   
+    
 # 🎨 Features
 Diwali-Themed Design: A vibrant, festive color scheme with glowing diyas and animated lights.   
 Personalized Wishes: Allows users to write and share custom Diwali messages.
