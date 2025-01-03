@@ -6,7 +6,7 @@ their loved ones with a touch of brightness and positivity.
 # 🎨 Features
 Diwali-Themed Design: A vibrant, festive color scheme with glowing diyas and animated lights.  
 Personalized Wishes: Allows users to write and share custom Diwali messages.
-Interactive Elements: Animations for a dynamic and lively experience.
+Interactive Elements: Animations for a dynamic and lively experience. 
 Responsive Design: Compatible with both desktop and mobile for easy sharing. 
   
 # 🛠️ Technologies Used
