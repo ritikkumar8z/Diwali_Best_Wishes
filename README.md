@@ -7,7 +7,7 @@ their loved ones with a touch of brightness and positivity.
 Diwali-Themed Design: A vibrant, festive color scheme with glowing diyas and animated lights.  
 Personalized Wishes: Allows users to write and share custom Diwali messages.
 Interactive Elements: Animations for a dynamic and lively experience.
-Responsive Design: Compatible with both desktop and mobile for easy sharing.
+Responsive Design: Compatible with both desktop and mobile for easy sharing. 
  
 # 🛠️ Technologies Used
 HTML: To structure the webpage.
