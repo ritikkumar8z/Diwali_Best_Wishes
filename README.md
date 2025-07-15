@@ -22,7 +22,7 @@ JavaScript: Adds interactive features like message customization and animations.
 └── script.js        # JavaScript for message interactions
 
 # 🌈 How to Use
-Clone the Repository
+Clone the Repository 
 
 git clone https://github.com/ritikkumar8z/diwali-wishes.git
 Open the HTML File Open index.html in your browser to explore and send Diwali wishes.
