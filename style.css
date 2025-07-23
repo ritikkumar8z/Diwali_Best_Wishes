@@ -1,73 +1,248 @@
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Salsa", cursive;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background: #0a0a0a;
 }
 
+/* Advanced Hero Section with Particle Effect */
 .hero-section {
-  /* min-height: 100vh; */
-  background-color: #f99501;
-  background-image: url("");
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: relative;
+  background: linear-gradient(135deg, #f99501 0%, #ff8c00 30%, #ffa500 70%, #f99501 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease-in-out infinite;
+  padding: 2rem 0;
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 30%);
+  pointer-events: none;
+  animation: floatingLights 12s ease-in-out infinite;
+}
+
+@keyframes floatingLights {
+  0%, 100% { opacity: 0.8; transform: translateY(0px); }
+  50% { opacity: 1; transform: translateY(-10px); }
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 150px 150px;
+  animation: sparkle 15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0.7; }
 }
 
 .para-audio {
-  margin-left: 15rem;
+  margin-left: min(15rem, 5vw);
+  position: relative;
+  z-index: 2;
+  animation: slideInLeft 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideInLeft {
+  0% { transform: translateX(-100px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 .hero-section p {
-  font-size: 38px;
+  font-size: clamp(28px, 5vw, 38px);
   max-width: 500px;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(249, 149, 1, 0.2);
+  color: #2c1810;
+  font-weight: 600;
+  animation: textGlow 3s ease-in-out infinite alternate;
 }
 
+@keyframes textGlow {
+  0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3); }
+  100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 25px rgba(249, 149, 1, 0.3); }
+}
+
+/* Enhanced Jhalar Decorations */
+.jhalar,
+.jhalar2,
+.jhalar3 {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: gentleSwing 6s ease-in-out infinite;
+}
+
+@keyframes gentleSwing {
+  0%, 100% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.02); }
+}
+
+.jhalar:hover,
+.jhalar2:hover,
+.jhalar3:hover {
+  transform: translateY(-8px) scale(1.05) rotate(0deg);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.35));
+  animation-play-state: paused;
+}
+
+/* First jhalar (left) */
 .jhalar {
   width: 200px;
   margin-bottom: -150px;
+  left: 0;
+  animation-delay: 0s;
 }
 
-/* .jhalar2 {
+/* Second jhalar (center) - now same style as first and third */
+.jhalar2 {
   width: 200px;
   margin-bottom: -150px;
-  position: absolute;
-  left: 86%; 
-  transform: translateX(0);
-} */
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 2s;
+  z-index: 0; /* Behind other jhalars */
+}
 
-/* .jhalar3{
-    width: 200px;
-    margin-bottom: -150px;
-    position: absolute;
-    left: 50%;  
-    transform: translateX(0); 
-} */
+/* Third jhalar (right) */
+.jhalar3 {
+  width: 200px;
+  height: 400px;
+  margin-bottom: -150px;
+  right: 0;
+
+  animation-delay: 4s;
+}
+
+/* Enhanced Audio Controls */
+audio {
+  border-radius: 12px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+audio:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+}
 
 audio::-webkit-media-controls-panel {
-  background-color: #fbd8a4;
+  background: linear-gradient(135deg, #fbd8a4 0%, #f5cc85 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button {
+  background: linear-gradient(135deg, #f99501 0%, #ff8c00 100%);
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .music-cont {
-  background-color: #fbd8a4;
+  background: linear-gradient(135deg, #fbd8a4 0%, #f5cc85 50%, #fbd8a4 100%);
+  background-size: 200% 200%;
   max-width: 500px;
   border-radius: 45.92px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 20px;
+  padding: 0.5rem 1.25rem;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: musicContPulse 4s ease-in-out infinite;
 }
 
+@keyframes musicContPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+  50% { transform: scale(1.02); box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2); }
+}
+
+.music-cont:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background-position: 100% 100%;
+}
+
+/* Enhanced Section Dividers */
 .circle {
-  width: 10px;
-  height: 10px;
-  background-color: #fbd8a4;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #fbd8a4 0%, #f5cc85 50%, #e6b866 100%);
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: circleGlow 3s ease-in-out infinite alternate;
+  transition: all 0.3s ease;
+}
+
+@keyframes circleGlow {
+  0% { box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 5px rgba(249, 149, 1, 0.3); }
+  100% { box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(249, 149, 1, 0.5); }
 }
 
 .horizontal-line {
-  height: 3px;
-  width: 468px;
-  background-color: #fbd8a4;
+  height: 4px;
+  width: min(468px, 70vw);
+  background: linear-gradient(90deg, #fbd8a4 0%, #f5cc85 25%, #ff8c00 50%, #f5cc85 75%, #fbd8a4 100%);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: lineShimmer 4s linear infinite;
+}
+
+@keyframes lineShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .section-divider {
@@ -75,123 +250,307 @@ audio::-webkit-media-controls-panel {
   align-items: center;
   gap: 12px;
   max-width: 700px;
-  margin-inline: auto;
-  padding-top: 15px;
-  padding-bottom: 26px;
-  /* margin-top: 20px; */
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  animation: fadeInUp 1s ease-out;
 }
 
+@keyframes fadeInUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Enhanced Lakshmi Ganesha Section */
 .lakshi-ganesha-section {
-  background-color: #f99501;
+  background: linear-gradient(180deg, #f99501 0%, #ff8c00 50%, #ffa500 100%);
+  background-size: 100% 200%;
+  animation: backgroundFloat 10s ease-in-out infinite;
   padding-bottom: 0.1px;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
 }
 
 .lakshi-ganesha-img {
   max-width: 75%;
   display: block;
   max-height: 763px;
-  margin-inline: auto;
-  margin-bottom: -20px;
+  margin: 0 auto -20px;
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.25));
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: imageFloat 8s ease-in-out infinite;
 }
 
+@keyframes imageFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+.lakshi-ganesha-img:hover {
+  transform: scale(1.05) translateY(-5px);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+/* Enhanced Typography */
 .wish {
   text-align: center;
   font-family: "Style Script", serif;
   font-weight: 400;
-  font-size: 50px;
+  font-size: clamp(38px, 6vw, 50px);
   margin-bottom: 0;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.3);
+  color: #2c1810;
+  animation: wishGlow 4s ease-in-out infinite alternate;
 }
 
+@keyframes wishGlow {
+  0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3); }
+  100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(249, 149, 1, 0.3); }
+}
+
+/* Enhanced Card Components */
 .white-card-cont {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 1rem;
+  animation: fadeInUp 1.5s ease-out;
 }
 
 .little-girl {
-  width: 270px;
+  width: min(270px, 25vw);
   margin-left: -85px;
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.25));
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: girlFloat 6s ease-in-out infinite;
+}
+
+@keyframes girlFloat {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.little-girl:hover {
+  transform: translateY(-10px) scale(1.05) rotate(0deg);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
 }
 
 .white-card {
-  background-color: #fff;
+  background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #ffffff 100%);
   max-width: 500px;
-  padding: 50px;
+  padding: 3rem;
   border-radius: 23px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(249, 149, 1, 0.2);
+  backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.white-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(249, 149, 1, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.white-card:hover::before {
+  opacity: 1;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.white-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .white-card p {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #2c1810;
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .lakshmi-ganesha-card {
-  background-color: white;
+  background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #ffffff 100%);
   border-radius: 23px;
   max-width: 70%;
   width: 100%;
   display: flex;
-  padding: 50px;
-  /* align-items: center;
-    justify-content: center; */
-  margin-inline: auto;
+  padding: 3rem;
+  margin: 0 auto;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(249, 149, 1, 0.2);
+  align-items: center;
+  gap: 2rem;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: cardFloat 8s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.lakshmi-ganesha-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .lakshmi-ganesha-card img {
   width: 50%;
+  border-radius: 12px;
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.15));
+  transition: all 0.4s ease;
+}
+
+.lakshmi-ganesha-card img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.2));
 }
 
 .happy-diwali {
-  margin-left: 185px;
-  font-size: 24px;
+  margin-left: min(185px, 15vw);
+  font-size: clamp(18px, 3vw, 24px);
+  color: #2c1810;
+  font-weight: 600;
+  animation: textSlideIn 1.5s ease-out;
+}
+
+@keyframes textSlideIn {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 .thanks {
-  margin-left: 185px;
+  margin-left: min(185px, 15vw);
   font-family: "Style Script", serif;
   font-weight: 400;
-  font-size: 50px;
+  font-size: clamp(40px, 6vw, 50px);
   margin-bottom: 0;
   margin-top: 0;
   padding-bottom: 1rem;
+  color: #2c1810;
+  animation: thanksGlow 3s ease-in-out infinite alternate;
 }
 
+@keyframes thanksGlow {
+  0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+  100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 15px rgba(249, 149, 1, 0.4); }
+}
+
+/* Enhanced Signature Styling */
 .signature {
   text-align: right;
   padding-bottom: 23px;
   padding-right: 18px;
   font-size: 1rem;
+  font-family: "Style Script", serif;
+  color: #333;
+  animation: signatureAppear 2s ease-out;
 }
 
+@keyframes signatureAppear {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.signature-link {
+  color: #7b2cbf;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.signature-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #7b2cbf, #9d4edd, #7b2cbf);
+  background-size: 200% 100%;
+  transition: all 0.4s ease;
+  border-radius: 1px;
+}
+
+.signature-link:hover::after {
+  width: 100%;
+  animation: linkShimmer 1s linear infinite;
+}
+
+@keyframes linkShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.signature-link:hover {
+  color: #5a189a;
+  transform: scale(1.05) translateY(-2px);
+  text-shadow: 
+    0 0 10px rgba(123, 44, 191, 0.3),
+    0 0 20px rgba(123, 44, 191, 0.2);
+}
+
+/* Advanced Responsive Design */
 @media (max-width: 860px) {
   .signature {
     font-size: 0.8rem;
     padding-bottom: 21px;
     padding-right: 16px;
   }
+  
   .lakshmi-ganesha-card {
-    padding: 35px;
+    padding: 2.2rem;
+    flex-direction: column;
+    text-align: center;
   }
 
-  .thanks {
-    font-size: 40px;
-    margin-left: 85px;
+  .lakshmi-ganesha-card img {
+    width: 70%;
   }
 
-  .happy-diwali {
-    font-size: 18px;
-    margin-left: 85px;
+  .thanks, .happy-diwali {
+    margin-left: 0;
   }
+  
   .white-card {
     max-width: 320px;
-    padding: 30px;
-  }
-
-  .white-card p {
-    font-size: 25px;
+    padding: 2rem;
   }
 
   .little-girl {
-    width: 200px;
+    width: min(200px, 20vw);
     margin-left: -50px;
   }
 
@@ -202,31 +561,32 @@ audio::-webkit-media-controls-panel {
   .first-deepak {
     display: block;
     margin-left: auto;
+    max-width: 350px;
   }
 
   .para-audio {
     margin-left: 1rem;
   }
 
-  .jhalar {
+  .jhalar, .jhalar3 {
     margin-bottom: -35px;
-  }
-
-  .first-deepak {
-    /* width: 100%; */
-    max-width: 350px;
   }
 
   .section-divider {
     max-width: 500px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Keep only 2 jhalars on mobile as requested */
+  .jhalar2 {
+    display: none;
   }
 
-  /* .horizontal-line{
-        width: 300px;
-    } */
-
-  .wish {
-    font-size: 48px;
+  .jhalar, .jhalar3 {
+    width: 120px;
+    margin-bottom: -100px;
   }
 }
 
@@ -236,49 +596,40 @@ audio::-webkit-media-controls-panel {
     padding-bottom: 19px;
     padding-right: 15px;
   }
+  
   .lakshmi-ganesha-card {
-    padding: 20px;
+    padding: 1.25rem;
+    margin: 0 1rem;
+    max-width: 90%;
   }
-  .thanks {
-    font-size: 26px;
-    margin-left: 40px;
-  }
-
-  .happy-diwali {
-    font-size: 14px;
-    margin-left: 40px;
-  }
+  
   .white-card {
-    max-width: 180px;
-    padding: 20px;
+    max-width: 280px;
+    padding: 1.25rem;
   }
 
   .white-card p {
-    font-size: 13px;
+    font-size: clamp(13px, 4vw, 16px);
   }
 
   .little-girl {
-    width: 110px;
+    width: min(110px, 15vw);
     margin-left: -35px;
   }
 
-  .soulful-Text,
-  .playing-music {
+  .soulful-Text, .playing-music {
     display: none;
   }
 
-  /* .playing-music{
-        display: none;
-    } */
-
   .music-cont {
-    padding-left: 0px;
+    padding: 0.5rem 0.75rem;
     max-width: 380px;
+    margin: 0 1rem;
   }
 
   .hero-section p {
-    font-size: 30px;
-    max-width: max-content; /* new learning */
+    max-width: max-content;
+    padding: 0 1rem;
   }
 
   .first-deepak {
@@ -288,27 +639,147 @@ audio::-webkit-media-controls-panel {
 
   .section-divider {
     max-width: 300px;
+    padding: 1rem 0.5rem;
   }
 
-  /* .horizontal-line{
-        width: 300px;
-    } */
-
-  .wish {
-    font-size: 38px;
+  .horizontal-line {
+    width: min(300px, 60vw);
   }
 }
 
-/* @media (max-width : 428px) {
-    .first-deepak{
-        width: 100%;
-    }
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 1rem 0;
+  }
+  
+  .para-audio {
+    margin-left: 0.5rem;
+  }
+  
+  .lakshmi-ganesha-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .white-card {
+    max-width: 250px;
+    padding: 1rem;
+  }
+  
+  .music-cont {
+    max-width: 320px;
+  }
+}
 
-} */
+/* Performance Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .jhalar, .jhalar2, .jhalar3 {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
 
-/* @media (width < 820px){
-    .second-deepak{
-        display: none;
-    }
+/* Enhanced Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f0f0f;
+  }
+  
+  .white-card, .lakshmi-ganesha-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    color: #e0e0e0;
+    border: 1px solid rgba(249, 149, 1, 0.4);
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .signature {
+    color: #999;
+  }
+  
+  .signature-link:hover {
+    text-shadow: 
+      0 0 10px rgba(157, 78, 221, 0.4),
+      0 0 20px rgba(157, 78, 221, 0.3);
+  }
+}
 
-} */
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .jhalar, .jhalar2, .jhalar3,
+  .little-girl, .lakshi-ganesha-img {
+    animation: none;
+  }
+  
+  .jhalar:hover, .jhalar2:hover, .jhalar3:hover,
+  .little-girl:hover, .lakshi-ganesha-img:hover {
+    transform: none;
+  }
+}
+
+/* Enhanced Focus States */
+.music-cont:focus-within {
+  outline: 3px solid #f99501;
+  outline-offset: 3px;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    0 0 0 3px rgba(249, 149, 1, 0.3);
+}
+
+.signature-link:focus {
+  outline: 2px solid #7b2cbf;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Print Optimizations */
+@media print {
+  .jhalar, .jhalar2, .jhalar3 {
+    display: none;
+  }
+  
+  .hero-section {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .white-card, .lakshmi-ganesha-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    background: white !important;
+  }
+  
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Loading Animation */
+@keyframes pageLoad {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  animation: pageLoad 1s ease-out;
+}
+
+/* Scroll-triggered animations */
+@keyframes scrollFadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.section-divider,
+.white-card-cont,
+.lakshmi-ganesha-card {
+  animation: scrollFadeIn 0.8s ease-out;
+}
