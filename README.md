@@ -12,7 +12,7 @@ Responsive Design: Compatible with both desktop and mobile for easy sharing.
 # 🛠️ Technologies Used
 HTML: To structure the webpage.
 CSS: For festive styles, animations, and glowing effects.
-JavaScript: Adds interactive features like message customization and animations.
+JavaScript: Adds interactive features like message customization and animations. 
 
 
 # 📂 Project Structure
